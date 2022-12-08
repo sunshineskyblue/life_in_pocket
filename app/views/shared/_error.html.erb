@@ -1,0 +1,7 @@
+<% if resource.errors.any? %>
+  <% resource.errors.full_messages.each do |message| %>
+      <ul>
+        <li><%= safe_join(message.split("\n"), tag(:br)) %></li>
+      </ul>
+  <% end %>
+<% end %>

@@ -1,0 +1,24 @@
+<div class="search-results-container"> 
+  <div>
+    <h2 class="search-count">検索結果：<%= rooms.size %>件</h2>
+    <div class="search-boxes-wrapper">
+      <% rooms.each do |room| %>
+        <div class="search-box">
+          <%= link_to(room_path(room), target: "_blank", rel: "noopener") do %>
+            <%= image_tag room.room_image, class: 'search-box-image' if room.room_image.attached? %>
+            <div class="seach-box-intro">
+              <div class="seach-box-name">
+                <p><%= room.name %></p>
+              </div>
+              <p class="seach-box-adress"><%= room.adress %></p>
+              <p class="search-box-fee">￥<%= room.fee.to_s(:delimited) %>/日</p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="search-results-pagenation">
+    <%= paginate rooms %>
+  </div>
+</div>

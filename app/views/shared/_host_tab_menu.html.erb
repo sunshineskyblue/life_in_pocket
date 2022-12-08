@@ -1,0 +1,19 @@
+<div class="tab-menu"> 
+  <%= link_to reservation_hosts_path do %>
+    <div class="tab-item ongoing">
+    <i class="<%= "fa-solid fa-exclamation" if current_user.has_reservations_cancel_requested? || current_user.has_notifications_unchecked_as_host?(action: "reserve") %>"></i>
+      <span>受付中</span>
+    </div>
+  <% end %>
+  <%= link_to completed_reservation_hosts_path do %>
+    <div class="tab-item history">
+      <i class="<%= "fa-solid fa-exclamation" if current_user.has_notifications_unchecked_as_host?(action: "cancel") %>"></i>
+      <span>予約履歴</span>
+    </div>
+  <% end %>
+  <%= link_to rooms_path do %>
+    <div class="tab-item rooms">
+      <span>物件一覧</span>
+    </div>
+  <% end %>
+</div>

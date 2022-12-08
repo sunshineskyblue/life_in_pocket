@@ -1,0 +1,43 @@
+.account-form {
+  width: calc(100% - 70px);
+  max-width: 400px;
+  margin: 0px auto;
+}
+
+.account-form-items-wrapper {
+  font-size: 13px;
+  margin-bottom: 13px;
+  text-align: center;
+}
+
+.account-text-field {
+  border: solid 0.2px black;
+  border-radius: 3px;
+  margin: 3px 0px 9px;
+  padding: 9px 6px;
+  width: 100%;
+}
+
+.account-submit {
+  background-color: #4a90e2;
+  color: white;
+  margin: 20px auto;
+  padding: 9px 6px;
+  border-radius: 3px;
+  border: solid 0.2px #4a90e2;
+  width: 100%;
+}
+
+.unsubscribe-submit {
+  background-color: white;
+  color: #f11847;
+  font-weight: bold;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  padding: 6px 3px;
+  border-radius: 7px;
+  border: solid 3px  #f11847;
+  width: 35%;
+  display: block;
+}

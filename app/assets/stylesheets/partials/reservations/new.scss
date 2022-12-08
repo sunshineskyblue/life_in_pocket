@@ -1,0 +1,84 @@
+.reservation-form-container {
+  width: calc(100% - 40px);
+  max-width: 350px;
+  margin: 40px auto;
+}
+
+.reservation-form-container h1 {
+  font-weight: normal;
+  font-size: 19px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.reservation-form-fee-box {
+  font-size: 15px;
+  border-bottom: solid 0.2px rgba(0, 0, 0, 0.463);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-form-date-box {
+  font-size: 14px;
+  border-bottom: solid 0.2px rgba(0, 0, 0, 0.463);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-form-stay-length-box {
+  font-size: 15px;
+  border-bottom: solid 0.2px rgba(0, 0, 0, 0.463);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-form-number-box {
+  font-size: 15px;
+  border-bottom: solid 0.2px rgba(0, 0, 0, 0.463);
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-form-payment-box {
+  font-size: 19px;
+  border-bottom: solid 0.2px rgba(0, 0, 0, 0.463);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.display-tax {
+  font-size: 15px;
+}
+
+.reservation-form-message {
+  font-size: 12px;
+  line-height: 30px;
+  border-bottom: solid 0.2px rgba(0, 0, 0, 0.463);
+  margin-bottom: 13px;
+}
+
+.reservation-form-submit {
+  border: solid 0.2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  margin: 3px 0px 9px;
+  padding: 9px 6px;
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: white;
+  background-color: #4a90e2;
+}
+
+.link-to-room-path {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  color: #4a90e2;
+}

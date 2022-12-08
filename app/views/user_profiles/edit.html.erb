@@ -1,0 +1,39 @@
+<% content_for(:title, "プロフィール") %>
+<% content_for :switch_stylesheets do %>
+  .sidebar-profile {
+    border-bottom: solid 4px #4a90e2
+    }
+
+  @media (min-width: 800px) {
+    .sidebar-profile {
+      border-right: solid 4px #4a90e2;
+      border-bottom: 0;
+      width: 140px;
+    }
+  }
+<% end %>
+
+<% content_for :mypage_content do %>
+  <h2>プロフィール</h2>
+  <%= form_with model: @user, url: profile_user_profile_path(@user.id), html: { method: :patch }, class: "profile-form" do |f| %>
+    <div class="error-message-field">
+      <%= render "shared/error", resource: @user %>
+    </div>
+    <%= image_tag @user.image.attached? ? @user.image : "/assets/default_icon.jpg", class: 'profile-icon' %>
+    <div class="profile-form-items-wrapper">
+      <%= f.label :image, "アイコン画像", class: "profile-form-label" %>
+      <%= f.file_field :image, autofocus: true, autocomplete: "image", class: "profile-file-field", accept: "image/jpg, image/jpeg, image/png" %>
+    </div>
+    <div class="profile-form-items-wrapper">
+      <%= f.label :name, "ユーザー名", class: "profile-form-label" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "profile-text-field" %>
+    </div>
+    <div class="profile-form-items-wrapper">
+      <%= f.label :introduction, "自己紹介", class: "profile-form-label" %>
+      <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "profile-textarea" %>
+    </div>
+    <%= f.submit "更新", name: nil, class: "profile-submit" %>
+  <% end %>
+<% end %>
+
+<%= render template: "layouts/mypage" %>

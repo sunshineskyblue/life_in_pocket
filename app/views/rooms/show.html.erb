@@ -1,0 +1,40 @@
+<% content_for(:title, @room.name) %>
+<div class="room-intro-page-container">
+  <div class="room-detail-wrapper">
+    <%= image_tag @room.room_image, class: 'room-image' if @room.room_image.attached? %>
+    <div class="room-icon-name-adress-wrapper">
+      <%= image_tag @room.user.image.attached? ? @room.user.image : "/assets/default_icon.jpg", class: 'owner-icon' %>
+      <div class="room-name-adress-wrapper">
+        <p><%= @room.name %></p>
+        <p><%= @room.adress %></p>
+      </div>
+    </div>
+    <div class="room-intro-container">
+      <div class="intro-box">
+        <p><%= safe_join(@room.introduction.split("\n"), tag(:br)) %></p>
+      </div>
+    </div>
+  </div>
+  <div class="reservation-entry-form-container">
+    <p>¥<%= @room.fee %>/日</p>
+    <div class="error-message-field">
+      <%= render "shared/flash_error" %>
+    </div>
+    <%= form_with url:"../reservations/new",  class: "reservation-entry-form", method: :get do |f| %>
+      <%= f.label :checkin, "チェックイン" %>
+      <%= f.date_field :checkin, class:"reservation-entry-form-date-field", value: params[:checkin] || "" %>
+      <%= f.label :checkout, "チェックアウト" %>
+      <%= f.date_field :checkout, class:"reservation-entry-form-date-field", value: params[:checkout] || ""  %>
+      <%= f.label :number, "宿泊人数" %>
+      <%= f.number_field :number, class:"reservation-entry-form-number-field", placeholder: "人", value: params[:number] || ""  %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <% if !user_signed_in? %>
+        <%= f.submit 'ログイン', name: nil, class:"reservation-entry-form-submit" %>
+      <% elsif current_user.invalid? %>
+        <%= f.submit 'プロフィール登録', name: nil, class:"reservation-entry-form-submit"  %>
+      <% else %>
+        <%= f.submit "予約する", name: nil, class:"reservation-entry-form-submit" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

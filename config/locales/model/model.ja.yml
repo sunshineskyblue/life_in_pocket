@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      room: ルーム
+      reservation: 予約
+    attributes:
+      user:
+        name: ユーザー名
+        introduction: 自己紹介
+        image: 画像
+      room:
+        name: 登録名
+        introduction: 物件紹介
+        fee: 料金
+        adress: 住所
+        room_image: 画像
+      reservation:
+        host_id: ホストID
+        guest_id: ゲストID
+        checkin: チェックイン
+        checkout: チェックアウト
+        number: 人数
+        payment: 支払い金額

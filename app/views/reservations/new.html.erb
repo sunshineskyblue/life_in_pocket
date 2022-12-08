@@ -1,0 +1,43 @@
+<% content_for(:title, "予約内容確認") %>
+<div class="reservation-form-container">
+  <h1>予約内容確認</h1>
+  <div class="reservation-form-fee-box">
+    <span>基本料金：</span>
+    <span>¥<%= @reservation.room.fee.to_i.to_s(:delimited) %>/泊</span>
+  </div>
+  <div class="reservation-form-date-box">
+    <span>チェックイン：</span>
+    <span><%= @reservation.checkin.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkin.wday]})") %></span>
+  </div>
+  <div class="reservation-form-date-box">
+    <span>チェックアウト：</span>
+    <span><%= @reservation.checkout.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkout.wday]})") %></span>
+  </div>
+  <div class="reservation-form-stay-length-box">
+    <span>宿泊日数：</span>
+    <span><%= @stay_length %>泊</span>
+  </div>
+  <div class="reservation-form-number-box">
+    <span>人数：</span>
+    <span><%= @reservation.number %>人</span>
+  </div>
+  <div class="reservation-form-payment-box">
+    <span class="display-tax">お支払金額(税込)</span>
+    <span><%= "¥#{@reservation.payment.to_s(:delimited)}" %></span>
+  </div>
+  <%= form_with model: @reservation do |f| %>
+    <%= f.hidden_field :room_id, value: @reservation.room_id %>
+    <%= f.hidden_field :checkin, value: @reservation.checkin %>
+    <%= f.hidden_field :checkout, value: @reservation.checkout %>
+    <%= f.hidden_field :number, value: @reservation.number %>
+    <%= f.hidden_field :payment, value: @reservation.payment %>
+    <p class="reservation-form-message">上記内容でよろしければ「予約を確定する」を押してください</p>
+    <%= f.submit "予約を確定する", name: nil, class:"reservation-form-submit" %>
+  <% end %>
+  <%= link_to "エントリー画面に戻る", room_path(@reservation.room_id,
+    checkin: @reservation.checkin, 
+    checkout: @reservation.checkout, 
+    number: @reservation.number
+    ), class:"link-to-room-path"
+  %>
+</div>

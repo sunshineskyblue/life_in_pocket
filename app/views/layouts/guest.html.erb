@@ -1,0 +1,10 @@
+<% content_for :content do %>
+  <div class="lists-container"> 
+    <h1>ゲスト管理</h1>
+    <div class="lists-wrapper">
+      <%= content_for?(:guest_content) ? yield(:guest_content) : yield %>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: "layouts/application" %>

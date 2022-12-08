@@ -1,0 +1,5 @@
+<% flash["errors"]&.each do |message| %>
+  <ul>
+    <li><%= safe_join(message.split("\n"), tag(:br)) %></li>
+  </ul>
+<% end %>

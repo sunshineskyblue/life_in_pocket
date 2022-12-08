@@ -1,0 +1,47 @@
+<main>
+  <div class="top-head-container">
+    <div class="top-search-box-wrapper">
+    <div class="top-search-box">
+      <p>Life <span>in</span> Pocket でこの景色、この時間</p>
+      <%= search_form_for @q, url: room_search_forms_path do |f| %>
+      <div class="search-icon-field">
+        <%= f.label :adress_cont, "エリア", class:"top-form-label"%>
+        <%= f.search_field :adress_cont, placeholder: "東京", class:"top-search-field" %>
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+      <div class="search-icon-field">
+        <%= f.label :name_or_introduction_cont, "キーワード", class:"top-form-label"%>
+        <%= f.search_field :name_or_introduction_cont, placeholder: "自然", class: "keyword-search-field" %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <%= f.submit "探す", class:"top-submit" %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+  <div class="top-foot-container">
+    <p class="top-foot-title">おすすめのエリア</p>
+    <div class="top-area-nav-container">
+      <%= link_to controller: "room_search_forms", action: "area_search", q: { adress_cont:'富山 福井 石川 新潟', area_cont: "北陸" } do %>
+        <div class="area-first-nav">
+          <p>北陸</p>
+        </div>
+      <% end %>
+      <%= link_to controller: "room_search_forms", action: "area_search", q: { adress_cont: '福岡 大分 宮崎 鹿児島 熊本 佐賀 長崎', area_cont: "九州" } do %>
+        <div class="area-second-nav">
+          <p>九州</p>
+        </div>
+      <% end %>
+      <%= link_to controller: "room_search_forms", action: "area_search", q: { adress_cont: '岐阜', area_cont: "飛騨高山" } do %>
+        <div class="area-third-nav">
+          <p>飛騨高山</p>
+        </div>
+      <% end %>
+      <%= link_to controller: "room_search_forms", action: "area_search", q: { adress_cont: '和歌山 奈良 三重', area_cont: "紀伊" } do %>
+        <div class="area-forth-nav">
+          <p>紀伊</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

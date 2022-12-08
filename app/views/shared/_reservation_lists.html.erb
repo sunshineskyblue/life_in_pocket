@@ -1,0 +1,17 @@
+<div class="reservation-list <%= "cancel-item" if reservation.cancel_completed?(user_id: current_user.id) %>">
+  <%= image_tag reservation.room.room_image, class: 'reservation-list-image' if reservation.room.room_image.attached? %>
+  <div class="reservation-list-headline">
+    <div class="reservation-list-name">
+      <i class="<%= "fa-solid fa-exclamation" if reservation.cancel_requested? || reservation.has_notifications_unchecked_by_host?(host_id: current_user.id) %>"></i>
+      <%= reservation.room.name %>
+    </div>
+    <div class="reservation-list-date">
+      <span><%= reservation.checkin.strftime("%Y/%m/%d") %></span>
+      <span>~</span>
+      <span><%= reservation.checkout.strftime("%Y/%m/%d") %></span>
+    </div>
+  </div>
+  <div class="reservation-chevron-container">
+    <i class="fa-solid fa-chevron-right"></i>
+  </div>
+</div>

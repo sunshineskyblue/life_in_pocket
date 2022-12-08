@@ -1,0 +1,37 @@
+<% content_for(:title, "物件一覧") %>
+<% content_for :switch_stylesheets do %>
+  .rooms::before {
+    content: "";
+    background-color: rgba(237, 5, 5, 0.826);
+    border-radius: 2px;
+    height: 4px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+  }
+<% end %>
+
+<% content_for :host_content do %>
+  <%= render "shared/host_tab_menu", reservations: nil, notifications: @notifications %>
+  <% @rooms.each do |room| %>
+    <%= link_to room_path(room.id) do %>
+      <div class="room-list">
+        <%= image_tag room.room_image, class: 'room-list-image' if room.room_image.attached? %>
+        <div class="room-list-headline">
+          <div class="room-list-name">
+            <%= room.name %>
+          </div>
+          <div class="room-list-adress">
+            <span><%= room.adress %></span>
+          </div>
+        </div>
+        <div class="room-chevron-container">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render template: "layouts/host" %>

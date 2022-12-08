@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '3.0.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
@@ -9,8 +9,8 @@ gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+# Use icons for style
+gem "font-awesome-sass", "~> 6.2.1"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -22,15 +22,37 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+# Use active_storage_validations gem below. variant methods also can be used
+gem 'image_processing', '~> 1.2'
+# Add active storage validations
+gem 'active_storage_validations'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# Use i18n
+gem 'rails-i18n', '~> 6.0'
+# Use search function
+gem 'ransack'
+# Use user management function
+gem 'devise'
+gem 'devise-i18n'
+# Use SCSS for stylesheets
+gem 'sass-rails', '>= 6'
+# Rspecインストール時のエラーに際し、読み込み指示
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+# Use pagenation
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rubocop-airbnb'
 end
 
 group :development do

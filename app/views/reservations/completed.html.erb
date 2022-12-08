@@ -1,0 +1,24 @@
+<% content_for(:title, "予約履歴") %>
+<% content_for :switch_stylesheets do %>
+  .second::before {
+    content: "";
+    background-color: rgba(237, 5, 5, 0.826);
+    border-radius: 2px;
+    height: 4px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+  }
+<% end %>
+
+<% content_for :guest_content do %>
+  <%= render "shared/guest_tab_menu" %>
+  <% @reservations.each do |reservation| %>
+    <%= link_to reservation_path(reservation.id) do %>
+        <%= render "shared/reservation_lists", reservation: reservation %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render template: "layouts/guest" %>

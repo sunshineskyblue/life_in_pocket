@@ -1,0 +1,94 @@
+.room-form-container {
+  width: 100%;
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: rgba(30, 38, 54, 0.15) 0px 3px 2px 0px;
+  padding: 30px 0px;
+  font-size: 15px;
+}
+
+.room-form-container h2 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.room-form {
+  width: calc(100% - 50px);
+  max-width: 500px;
+  margin: 0px auto;
+}
+
+.room-form-items-wrapper {
+  margin-bottom: 30px;
+}
+
+.room-form-label {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.room-form-label::before {
+  content: "必須";
+  color: #fff;
+  background-color: #ff0000a8;
+  font-size: 11px;
+  border-radius: 5px;
+  padding: 4px;
+  margin-right: 8px;
+}
+
+.room-text-field {
+  border: solid 0.2px black;
+  border-radius: 3px;
+  margin: 10px auto;
+  padding: 12px 6px;
+  width: 100%;
+}
+
+.room-textarea {
+  height: 200px;
+  width: 100%;
+  margin: 10px auto;
+  font-family: inherit;
+  border: solid 0.2px black;
+  border-radius: 3px;
+}
+
+.room-number-field {
+  border: solid 0.2px black;
+  border-radius: 3px;
+  margin: 10px auto;
+  padding: 12px 6px;
+  width: 100%;
+}
+
+.room-number-field::placeholder {
+  text-align: left;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.room-file-field {
+  margin: 0px auto 10px;
+  padding: 20px 6px;
+  width: 100%;
+}
+
+.room-submit {
+  font-size: 16px;
+  border-radius: 3px;
+  margin: 0px auto 10px;
+  padding: 12px 6px;
+  background-color: #4a90e2;
+  color: white;
+  border: 0;
+  width: 100%;
+}
+
+@media (min-width: 650px) {
+  .room-form-container {
+    max-width: 650px;
+  }
+}

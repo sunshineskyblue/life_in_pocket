@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <nav>
+    <div class="sidebar-lists-container">
+      <ul>
+        <li class="sidebar-account"><%= link_to 'アカウント設定', edit_user_registration_path %></li>
+        <li class="sidebar-profile"><%= link_to 'プロフィール情報', profile_user_profile_path(current_user.id) %></li>
+      </ul>
+    </div>
+  </nav>
+</div>

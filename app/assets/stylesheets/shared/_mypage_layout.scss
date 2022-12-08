@@ -1,0 +1,28 @@
+.mypage-main-container {
+  background-color: white;
+  padding: 20px 0px;
+  margin: 5px 0px 0px;
+}
+
+.mypage-main-container h2 {
+  text-align: center;
+  margin: 20px 0 20px;
+  font-size: 18px;
+}
+
+@media (min-width: 800px) {
+  .mypage-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    min-height: 100vh;
+  }
+
+  .mypage-main-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0px;
+    margin-left: 10px;
+  }
+}

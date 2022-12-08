@@ -1,0 +1,118 @@
+.host-container {
+  margin-top: 40px;
+  width: calc(100% - 50px);
+  min-height: 100vh;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.note-cancel-request-done {
+  font-size: 13px;
+  text-align: left;
+  margin-bottom: 20px;
+  color: rgb(133, 17, 17);
+}
+
+.host-container h1 {
+  text-align: left;
+  width: 100%;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.811);
+}
+
+.host-container h1:nth-child(2) {
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.275);
+}
+
+.host-container .reservation-table-wrapper {
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.host-container .reservation-table dt {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 12px;
+}
+
+.host-container .reservation-table dd {
+  font-size: 14px;
+  font-weight: lighter;
+  text-align: left;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.275);
+}
+
+.host-container .user-box-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+  padding: 15px 0;
+  margin-bottom: 80px;
+  border-top: solid 1px rgba(0, 0, 0, 0.275);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.275);
+}
+
+.host-container .user-box {
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 20px;
+}
+
+.host-container .user-image {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.host-container .user-headline {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.host-container .user-name {
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.host-container .user-status {
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.host-container .user-introduction {
+  padding: 0px 7px;
+  font-size: 13px;
+  line-height: 25px;
+}
+
+.host-cancel-button {
+  display: block;
+  background-color: rgba(244, 61, 61, 0.494);
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 20px;
+  border: 0;
+  max-width: 250px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}

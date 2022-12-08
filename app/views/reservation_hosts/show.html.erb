@@ -1,0 +1,60 @@
+<% content_for(:title, "予約情報") %>
+<div class="host-container">
+  <% if @reservation.canceled? %>
+    <p class="note-cancel-request-done">
+      この予約はキャンセルされました。</br>
+      キャンセルポリシーに従い自動的に返金処理がされます。
+    </p>
+  <% elsif @reservation.cancel_requested? %>
+    <p class="note-cancel-request-done">
+      キャンセルリクエスト済み</br>
+      キャンセルポリシーのご確認をお願い致します。</br>
+    </p>
+  <% end %>
+  <h1>予約内容</h1>
+  <div class="error-message-field">
+    <%= render "shared/error", resource: @reservation %>
+  </div>
+  <div class="reservation-table-wrapper">
+    <dl class="reservation-table">
+      <dt>宿泊先</dt>
+      <dd><%= @reservation.room.name %></dd>
+      <dt>住所</dt>
+      <dd><%= @reservation.room.adress %></dd>
+      <dt>チェックイン</dt>
+      <dd><%= @reservation.checkin.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkin.wday]})") %></dd>
+      <dt>チェックアウト</dt>
+      <dd><%= @reservation.checkout.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkout.wday]})") %></dd>
+      <dt>確定日時</dt>
+      <dd><%= @reservation.updated_at.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkout.wday]}) %H時%M分") %></dd>
+      <% unless @reservation.canceled? %>
+        <dt>利益</dt>
+        <dd>¥<%= @reservation.payment.to_s(:delimited) %></dd>
+      <% end %>
+    </dl>
+  </div>
+  <h1>予約者情報</h1>
+  <div class="user-box-container">
+    <div class="user-box">
+      <%= image_tag @reservation.guest.image, class: 'user-image' if @reservation.guest.image.attached? %>
+      <div class="user-headline">
+        <div class="user-name">
+          <%= @reservation.guest.name %>
+        </div>
+        <div class="user-status">
+          <span>本人認証済</span>
+        </div>
+      </div>
+    </div>
+    <div class="user-introduction">
+      <%= safe_join(@reservation.guest.introduction.split(/\n/), tag(:br)) %>
+    </div>
+  </div>
+  <% if @reservation.ongoing? %>
+    <% unless @reservation.cancel_requested? %>
+      <%= form_with model: @reservation, url: reservation_host_path(@reservation.id), data: {confirm: "必ずキャンセルポリシーをご確認後、キャンセルリクストをしてください"} do |f| %>
+        <%= f.submit "キャンセルリクエスト", class: "host-cancel-button" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

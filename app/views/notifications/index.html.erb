@@ -1,0 +1,72 @@
+<% content_for(:title, "お知らせ") %>
+<% content_for :switch_stylesheets do %>
+  .first::before {
+    content: "";
+    background-color: rgba(237, 5, 5, 0.826);
+    border-radius: 2px;
+    height: 4px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+  }
+<% end %>
+
+<div class="lists-container"> 
+  <h1>お知らせ</h1>
+  <div class="lists-wrapper">
+    <div class="tab-menu"> 
+      <%= link_to notifications_path do %>
+        <div class="tab-item first">
+          <span>やることリスト</span>
+        </div>
+      <% end %>
+    </div>
+    <% @notifications.each do |notification| %>
+      <% if notification.has_action_for_host?(user_id: current_user.id) %>
+        <%= link_to reservation_host_path(notification.reservation_id) do %>
+          <div class="notification-list">
+            <%= image_tag notification.guest.image, class: 'notification-list-image' if notification.guest.image.attached? %>
+            <div class="notification-list-headline">
+              <div class="notification-list-main">
+                <i class="<%= "fa-solid fa-exclamation" if !notification.checked? %>"></i>
+                <%= notification.guest.name %>
+                <% if notification.has_action?(reserve: 'reserve') %>
+                  <span class="comment">さんがあなたの物件を予約しました。予約内容を確認してください。</span>
+                <% elsif notification.has_action?(cancel: 'cancel') %>
+                  <span class="comment">さんが予約をキャンセルしました。予約内容を確認してください。</span>
+                <% end %>
+              </div>
+              <div class="notification-list-bottom">
+                <span><%= time_ago_in_words(notification.created_at) %></span>
+                <span class="ago">前</span>
+              </div>
+            </div>
+            <div class="chevron-container">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        <% end %>
+      <% elsif notification.has_action_for_guest?(user_id: current_user.id) %>
+        <%= link_to reservation_path(notification.reservation_id) do %>
+          <div class="notification-list">
+            <%= image_tag notification.host.image, class: 'notification-list-image' if notification.guest.image.attached? %>
+            <div class="notification-list-headline">
+              <div class="notification-list-main">
+              <i class="<%= "fa-solid fa-exclamation" if !notification.checked? %>"></i>
+                <span class="comment">ホストからキャンセルリクエストがありました。この予約のキャンセルをお願い致します。</span>
+              </div>
+              <div class="notification-list-bottom">
+                <span><%= time_ago_in_words(notification.created_at) %></span>
+                <span class="ago">前</span>
+              </div>
+            </div>
+            <div class="chevron-container">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

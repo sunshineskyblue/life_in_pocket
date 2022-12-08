@@ -1,0 +1,90 @@
+<header>
+  <div class="header-container">
+    <%= link_to root_path, class: "site-title" do %>
+      Life<span>in</span>Pocket
+    <% end %>
+    <%= search_form_for @q, url: room_search_forms_path, class: "search-form" do |f| %>
+      <div class="map-icon-field">
+        <%= f.search_field :adress_cont, placeholder: "エリア", class: "adress-search-field" %>
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+    <% end %>
+  </div>
+  <% if user_signed_in? %>
+    <div class="user-field-container">
+      <div class="notification-field">
+        <%= link_to notifications_path do %>
+          <i class="fa-solid fa-bell"></i>
+          <% if @notification.unchecked_count_or_false_if_zero(user_id: current_user.id) %>
+            <div class="notification-number">
+              <span><%= @notification.unchecked_count_or_false_if_zero(user_id: current_user.id) %></span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="user-icon-field"> 
+        <% if current_user.image.attached? %>
+          <%= image_tag current_user.image, class: 'user-icon' %>
+        <% else %>
+          <%= image_tag "/assets/default_icon.jpg" , class: 'user-icon' %>
+        <% end %>
+      </div>
+    </div>
+    <ul class="global-navigation hide-element">
+      <%= link_to create_rooms_path do %>
+        <div class="navigation-list-container">
+          <div class="navigation-list">
+            <li>物件登録</li>
+            <div class="chevron-container">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to edit_user_registration_path do %>
+        <div class="navigation-list-container">
+          <div class="navigation-list">
+            <li>マイページ</li>
+            <div class="chevron-container">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to reservation_hosts_path do %>
+        <div class="navigation-list-container">
+          <div class="navigation-list">
+            <li>ホストページ</li>
+            <div class="chevron-container">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to reservations_path do %>
+        <div class="navigation-list-container">
+          <div class="navigation-list">
+            <li>ゲストページ</li>
+            <div class="chevron-container">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "logout" do %>
+        <div class="navigation-list-container">
+          <div class="navigation-list">
+            <li>ログアウト</li>
+            <div class="chevron-container">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  <% else %>
+    <div class="entry-field">
+      <%= link_to 'ログイン', login_path %>
+      <%= link_to '登録する', sign_up_path %>
+    </div>
+  <% end %>
+</header>

@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskRoom</title>
+    <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbolinks-cache-control" content="no-cache">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <style><%= yield(:switch_stylesheets) if content_for?(:switch_stylesheets) %></style>
+    <div class="app-container">
+      <%= render "shared/header", search: @q %>
+      <% if flash[:notice] || flash[:alert] %>
+        <div class="message-box">
+          <p><%= flash[:notice] %></p>
+          <p><%= flash[:alert] %></p>
+        </div>
+      <% end %>
+      <div class="main">
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </div>
+      <footer>
+      <p>© 2022 TAIYOPORTOFOLIO.INC.</p>
+      </footer>
+    </div>
   </body>
 </html>

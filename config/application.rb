@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module TaskRoom
   class Application < Rails::Application
+    
+    # time zone
+    config.time_zone = 'Tokyo'
+    
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
@@ -18,5 +22,17 @@ module TaskRoom
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # i18n
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+
+    # not generate the files below when rails g
+    config.generators do |g|
+      g.stylesheets false   #styleシート
+      g.javascripts false   #javascript
+      g.helper false        #ヘルパー
+      g.test_framework false #テストファイル
+    end
   end
 end

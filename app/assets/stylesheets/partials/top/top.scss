@@ -1,0 +1,202 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.top-head-container {
+  height: 100vh;
+  background-image: image-url("img_top_cover.JPG");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.top-search-box-wrapper {
+  height: 50%;
+  display: block;
+}
+
+.top-search-box {
+  background-color: white;
+  font-size: 21px;
+  width: calc(100% - 50px);
+  padding: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 5px;
+  max-width: 420px;
+}
+
+.top-search-box p {
+  margin-bottom: 10px;
+}
+
+.top-search-box span {
+  color: rgb(17, 197, 17);
+}
+
+.top-form-label {
+  font-size: 11px;
+  display: block;
+  width: 100%;
+  margin-top: 0px;
+  margin-left: 3px;
+  margin-bottom: 3px;
+}
+
+.top-search-field {
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  border: solid 0.8px rgba(0, 0, 0, 0.678);
+  border-radius: 5px;
+}
+
+.keyword-search-field {
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding-left: 22px;
+  border: solid 0.8px rgba(0, 0, 0, 0.678);
+  border-radius: 5px;
+}
+
+_::-webkit-full-page-media, _:future, :root .top-search-box input {
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.search-icon-field {
+  position: relative;
+}
+
+.top-search-box i {
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  font-size: 14px;
+}
+
+.top-submit {
+  display: block;
+  width: 100%;
+  height: 33px;
+  text-align: center;
+  margin-top: 30px;
+  background-color: #4a90e2;
+  color: white;
+  border-radius: 3px;
+  border: solid 0.2px #4a90e2;
+}
+
+// おすすめのエリア
+.top-foot-container {
+  background-color: white;
+  width: 100%;
+}
+
+.top-foot-title {
+  font-size: 19px;
+  font-weight: bold;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.top-area-nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.top-area-nav-container p {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0px;
+}
+
+.area-first-nav {
+  width: 210px;
+  height: 280px;
+  margin-bottom: 30px;
+  background-image: image-url("img_kanazawa.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.area-second-nav {
+  width: 210px;
+  height: 280px;
+  margin-bottom: 30px;
+  background-image: image-url("img_takachiho.JPG");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.area-third-nav {
+  width: 210px;
+  height: 280px;
+  margin-bottom: 30px;
+  background-image: image-url("img_takayama.JPG");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.area-forth-nav {
+  width: 210px;
+  height: 280px;
+  margin-bottom: 30px;
+  background-image: image-url("img_kumanokodo.JPG");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+@media (min-width: 600px) {
+  .top-search-box {
+    margin-bottom: 100px;
+    margin-left: 80px;
+  }
+
+  .top-area-nav-container {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 980px) {
+  .top-area-nav-container {
+    min-width: 950px;
+  }
+}

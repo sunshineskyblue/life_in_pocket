@@ -1,0 +1,9 @@
+<% content_for(:title, "予約完了") %>
+<div class="reservation-registered-container">
+  <div class="reservation-table-wrapper">
+    <h1>予約内容</h1>
+    <%= render "shared/reservation_table", reservation: @reservation %>
+    <p>予約内容は修正はできません。この予約をキャンセルしてから再度お申込みください</p>
+    <%= link_to "ホームに戻る >>", root_path, class:"link-to-home" %>
+  </div>
+</div>

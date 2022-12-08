@@ -1,0 +1,87 @@
+body,
+div,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+img,
+figure,
+h1,
+h2,
+h4,
+h5,
+h6,
+form,
+select,
+input {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3",
+    "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック",
+    "MS PGothic", sans-serif;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none; 
+  color: black;
+}
+
+.input_border input {
+  border: 0;
+}
+
+input {
+  padding: 2px 5px;
+  font-size: 14px;
+}
+
+textarea {
+  font-size: 14px;
+}
+
+input[type="number"] {
+  text-align: right;
+  border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+li {
+  list-style-type: none;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+// body
+.app-container {
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(241, 234, 220, 0.376);
+  position: relative;
+}
+
+.main {
+  min-height: 100vh;
+}
