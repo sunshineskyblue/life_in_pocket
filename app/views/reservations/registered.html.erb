@@ -1,8 +1,40 @@
 <% content_for(:title, "予約完了") %>
 <div class="reservation-registered-container">
-  <div class="reservation-table-wrapper">
+  <div class="registraion-table-wrapper">
     <h1>予約内容</h1>
-    <%= render "shared/reservation_table", reservation: @reservation %>
+    <table class="registraion-table">
+      <tr>
+        <th>宿泊先</th>
+        <td><%= @reservation.room.name %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @reservation.room.adress %></td>
+      </tr>
+      <tr>
+        <th>チェックイン</th>
+        <td><span><%= @reservation.checkin.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkin.wday]})") %></span></td>
+      </tr>
+      <tr>
+        <th>チェックアウト</th>
+        <td><span><%= @reservation.checkout.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkout.wday]})") %></span></td>
+      </tr>
+      <tr>
+        <th>確定日時</th>
+        <td><span><%= @reservation.updated_at.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkout.wday]}) %H時%M分") %></span></td>
+      </tr>
+      <% if @reservation.canceled? %>
+      <% else %>
+        <tr>
+          <% if @reservation.has_user_as_host?(user_id: current_user.id) %>
+            <th>利益</th>
+          <% else %>
+            <th>支払い金額</th>
+          <% end %>
+          <td>¥<%= @reservation.payment.to_s(:delimited) %></td>
+        </tr>
+      <% end %>
+    </table>
     <p>予約内容は修正はできません。この予約をキャンセルしてから再度お申込みください</p>
     <%= link_to "ホームに戻る >>", root_path, class:"link-to-home" %>
   </div>
