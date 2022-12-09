@@ -113,15 +113,18 @@ class Reservation < ApplicationRecord
     )
   end
 
-  # TODO: コード位置再検討
-  def destroy_cancel_requst_notification
-    Notification.
-      where('reservation_id = ?
-        and guest_id = ?
-        and host_id = ?
-        and action = ?',
-        id, guest_id, host_id, "cancel_request").
-      destroy_all                                  # recordが無ければ空の配列を返す。返り値確認は現状不要
+  def destroy_notifications(**actions)
+    reserve = actions[:reserve] || ''
+    cancel_request = actions[:cancel_request] || ''
+    cancel = actions[:cancel] || ''
+
+    notifications.each do |notification|
+      if notification.has_action?(reserve: reserve, cancel_request: cancel_request, cancel: cancel)
+        notification.destroy
+      else
+        next
+      end
+    end
   end
 
   private

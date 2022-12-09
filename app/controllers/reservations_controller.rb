@@ -65,7 +65,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.update(cancel: true)
       @reservation.create_cancel_notification
-      @reservation.destroy_cancel_requst_notification
+      @reservation.destroy_notifications(reserve: "reserve", cancel_request: "cancel_request")
       flash[:notice] = '予約がキャンセルされました'
       redirect_to reservations_path
     else

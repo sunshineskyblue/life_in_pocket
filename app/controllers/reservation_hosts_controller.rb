@@ -10,8 +10,7 @@ class ReservationHostsController < ApplicationController
   def show
     @reservation = current_user.host_reservations.find_by(id: params[:id])
 
-    unchecked = @reservation.notifications.host_unchecked(host_id: current_user.id, checked: false)
-    unchecked.update_all(checked: true) if unchecked.present?
+    @reservation.destroy_notifications(cancel: "cancel", reserve: "reserve")
   end
 
   def update
