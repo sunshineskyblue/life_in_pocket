@@ -26,11 +26,7 @@
       <% if @reservation.canceled? %>
       <% else %>
         <tr>
-          <% if @reservation.has_user_as_host?(user_id: current_user.id) %>
-            <th>利益</th>
-          <% else %>
-            <th>支払い金額</th>
-          <% end %>
+          <th>お支払金額</th>
           <td>¥<%= @reservation.payment.to_s(:delimited) %></td>
         </tr>
       <% end %>

@@ -53,15 +53,13 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = current_user.guest_reservations.find_by(id: params[:id])
-
-    unchecked = @reservation.
-      notifications.
-      guest_unchecked(guest_id: current_user.id, checked: false)
-    unchecked.update_all(checked: true) if unchecked.present?
   end
 
   def update
-    @reservation = current_user.guest_reservations.find_by(id: params[:id])
+    @reservation = current_user.
+      guest_reservations.
+      includes(:notifications).
+      find_by(id: params[:id])
 
     if @reservation.update(cancel: true)
       @reservation.create_cancel_notification

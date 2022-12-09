@@ -52,6 +52,6 @@ class User < ApplicationRecord
   end
 
   def has_notifications_unchecked_as_host?(action:)
-    host_notifications.action_unchecked(action: action, checked: false).present?
+    host_notifications.action_unchecked(action: action).present?
   end
 end

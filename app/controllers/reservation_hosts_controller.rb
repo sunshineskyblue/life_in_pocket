@@ -8,7 +8,10 @@ class ReservationHostsController < ApplicationController
   end
 
   def show
-    @reservation = current_user.host_reservations.find_by(id: params[:id])
+    @reservation = current_user.
+      host_reservations.
+      includes(:notifications).
+      find_by(id: params[:id])
 
     @reservation.destroy_notifications(cancel: "cancel", reserve: "reserve")
   end

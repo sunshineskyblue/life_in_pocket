@@ -232,7 +232,7 @@ RSpec.describe Reservation, type: :model do
       end
     end
 
-    describe '#has_notifications_unchecked_by_host?(host_id:)' do
+    describe '#has_notifications_unchecked_by_host?(user_id:, **actions)' do
       shared_context 'unchecked notification by host' do
         let!(:unchecked) do
           create(:notification,
@@ -243,16 +243,24 @@ RSpec.describe Reservation, type: :model do
       end
 
       context 'ホストIDが渡された場合' do
-        let!(:checked) do
+        let!(:cancel_unchecked) do
+          create(:notification,
+          reservation: reservation_for_host_room,
+          checked: false,
+          action: 'cancel')
+        end
+
+        let!(:reserve_checked) do
           create(:notification,
           reservation: reservation_for_host_room,
           checked: true,
           action: 'reserve')
         end
 
-        it '関連先のNotificationモデルのchecked属性にfalseが無い場合、falseが返ること' do
+        it '関連先のNotificationモデルの内、actionキーワードの値と一致し、
+        かつchecked属性がfalseであるインスタンスが存在しない場合、falseが返ること' do
           expect(reservation_for_host_room.
-            has_notifications_unchecked_by_host?(host_id: host.id)).to eq false
+            has_notifications_unchecked_by_host?(user_id: host.id, reserve: 'reserve')).to eq false
         end
 
         context 'falseがある場合' do
@@ -260,7 +268,7 @@ RSpec.describe Reservation, type: :model do
 
           it 'trueが返ること' do
             expect(reservation_for_host_room.
-              has_notifications_unchecked_by_host?(host_id: host.id)).to eq true
+              has_notifications_unchecked_by_host?(user_id: host.id, reserve: 'reserve')).to eq true
           end
         end
       end
@@ -270,9 +278,15 @@ RSpec.describe Reservation, type: :model do
 
         it 'falseが返ること' do
           expect(reservation_for_host_room.
-            has_notifications_unchecked_by_host?(host_id: other_user.id)).to eq false
+            has_notifications_unchecked_by_host?(
+              user_id: other_user.id,
+              reserve: 'reserve'
+            )).to eq false
           expect(reservation_for_host_room.
-            has_notifications_unchecked_by_host?(host_id: guest.id)).to eq false
+            has_notifications_unchecked_by_host?(
+              user_id: guest.id,
+              reserve: 'reserve'
+            )).to eq false
         end
       end
     end

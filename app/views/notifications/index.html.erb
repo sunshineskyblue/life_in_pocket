@@ -23,7 +23,7 @@
       <% end %>
     </div>
     <% @notifications.each do |notification| %>
-      <% if notification.has_action_for_host?(user_id: current_user.id) %>
+      <% if notification.has_action_for_host?(user_id: current_user.id, reserve: 'reserve', cancel: 'cancel') %>
         <%= link_to reservation_host_path(notification.reservation_id) do %>
           <div class="notification-list">
             <%= image_tag notification.guest.image, class: 'notification-list-image' if notification.guest.image.attached? %>
@@ -47,7 +47,7 @@
             </div>
           </div>
         <% end %>
-      <% elsif notification.has_action_for_guest?(user_id: current_user.id) %>
+      <% elsif notification.has_action_for_guest?(user_id: current_user.id, cancel_request: 'cancel_request') %>
         <%= link_to reservation_path(notification.reservation_id) do %>
           <div class="notification-list">
             <%= image_tag notification.host.image, class: 'notification-list-image' if notification.guest.image.attached? %>

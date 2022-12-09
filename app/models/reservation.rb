@@ -65,9 +65,17 @@ class Reservation < ApplicationRecord
     guest_id == user_id
   end
 
-  def has_notifications_unchecked_by_host?(host_id:)
+  def has_notifications_unchecked_by_host?(user_id:, **actions)
+    reserve = actions[:reserve] || ''
+    cancel = actions[:cancel] || ''
+
     notifications.each do |notification|
-      if !notification.checked? && notification.has_action_for_host?(user_id: host_id)
+      if !notification.checked? &&
+          notification.has_action_for_host?(
+            user_id: user_id,
+            reserve: reserve,
+            cancel: cancel
+          )
         return true
         break
       else
@@ -79,8 +87,14 @@ class Reservation < ApplicationRecord
   end
 
   def cancel_completed?(user_id:)
-    canceled? && (has_user_as_guest?(user_id: user_id) ||
-    has_user_as_host?(user_id: user_id) && !has_notifications_unchecked_by_host?(host_id: user_id))
+    canceled? &&
+    (has_user_as_guest?(user_id: user_id) || has_user_as_host?(user_id: user_id) &&
+    !has_notifications_unchecked_by_host?(
+      user_id: user_id,
+      reserve: 'resereve',
+      cancel: 'cancel'
+    )
+    )
   end
 
   # TODO: コード位置再検討
@@ -151,7 +165,8 @@ class Reservation < ApplicationRecord
         between_checkin_checkout(room_id: room_id, checkin: checkin, checkout: checkout)&.first
 
     if has_reserved.present?
-      errors.add(:base, "恐れ入りますが、空室がございません。\n予約済み1件 #{has_reserved.checkin} ~ #{has_reserved.checkout}")
+      errors.add(:base, "恐れ入りますが、空室がございません。\n
+        予約済み1件 #{has_reserved.checkin} ~ #{has_reserved.checkout}")
     end
   end
 

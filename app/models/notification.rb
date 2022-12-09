@@ -4,18 +4,9 @@ class Notification < ApplicationRecord
   belongs_to :reservation
 
   scope :action_unchecked,
-    -> (action:, checked:) {
-      where('action = ? and checked = ? ', action, checked)
-    }
-
-  scope :host_unchecked,
-    -> (host_id:, checked:) {
-      where('host_id = ? and checked = ? ', host_id, checked)
-    }
-
-  scope :guest_unchecked,
-    -> (guest_id:, checked:) {
-      where('guest_id = ? and checked = ? ', guest_id, checked)
+    -> (action:) {
+      where(action: action).
+        where(checked: false)
     }
 
   scope :to_do_notifications,
@@ -62,8 +53,8 @@ class Notification < ApplicationRecord
   end
 
   def has_action_for_host?(user_id:, **actions)
-    reserve = actions[:reserve] || 'reserve'
-    cancel = actions[:cancel] || 'cancel'
+    reserve = actions[:reserve] || ''
+    cancel = actions[:cancel] || ''
 
     if has_user_as_host?(user_id: user_id) && has_action?(reserve: reserve, cancel: cancel)
       return true
@@ -73,7 +64,7 @@ class Notification < ApplicationRecord
   end
 
   def has_action_for_guest?(user_id:, **actions)
-    cancel_request = actions[:cancel_request] || 'cancel_request'
+    cancel_request = actions[:cancel_request] || ''
 
     if has_user_as_guest?(user_id: user_id) && has_action?(cancel_request: cancel_request)
       return true
